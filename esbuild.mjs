@@ -7,6 +7,7 @@ build({
   format: "cjs",
   platform: "node",
   target: "node16",
+  external: ["yargs"],
 }).catch((err) => {
   console.error(err);
   process.exit(1);

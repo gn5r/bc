@@ -9,5 +9,11 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.2",
+    "@types/node": "^24.0.1",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
   }
 }

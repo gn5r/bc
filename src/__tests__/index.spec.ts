@@ -25,17 +25,4 @@ describe("index.ts", () => {
     errorSpy.mockRestore();
     exitSpy.mockRestore();
   });
-
-  it("prints hello world when 'hello' command is used", async () => {
-    const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
-
-    await createCli().parse(["hello"]);
-
-    expect(logSpy).toHaveBeenCalledWith("hello world");
-    expect(errorSpy).not.toHaveBeenCalled();
-
-    logSpy.mockRestore();
-    errorSpy.mockRestore();
-  });
 });

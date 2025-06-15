@@ -7,7 +7,7 @@ import { Entity } from "backlog-js";
 export const myselfCommand: CommandModule<{}, DebugOption> = {
   command: "myself",
   describe:
-    "Get information about the current user\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-own-user/",
+    "APIとの認証に使用しているユーザーの情報を取得します。\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-own-user/",
   builder: (yargs) => withDebugOption(yargs),
   handler: async (argv) => {
     const user = await client.getMyself();

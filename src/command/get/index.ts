@@ -7,9 +7,9 @@ export const getCommand: CommandModule<{}, {}> = {
   builder: (yargs) =>
     yargs
       .wrap(null)
-      .usage("usage: $0 get <subComamand>")
+      .usage("使い方: $0 get <subCommand>")
       .command(myselfCommand)
-      .demandCommand(1, "You need at least one command before moving on")
+      .demandCommand(1, "コマンドを指定してください")
       .strict()
       .showHelpOnFail(true),
   handler: () => {},

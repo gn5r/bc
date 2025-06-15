@@ -15,11 +15,11 @@ describe("index.ts", () => {
     }
 
     expect(errorSpy).toHaveBeenCalledWith(
-      expect.stringContaining("usage: backlog <command> [args]")
+      expect.stringContaining("使い方: backlog <command> [args]")
     );
 
     expect(errorSpy).toHaveBeenCalledWith(
-      expect.stringContaining("You need at least one command before moving on")
+      expect.stringContaining("コマンドを指定してください")
     );
 
     errorSpy.mockRestore();

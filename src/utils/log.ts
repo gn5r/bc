@@ -1,16 +1,16 @@
 import { flattenToMergedRecord, getKeys } from "./objects";
 
-function debugLog(debug?: boolean, ...args: any[]) {
+export function debugLog(debug?: boolean, ...args: any[]) {
   if (debug) {
     console.debug("[debug]", ...args);
   }
 }
 
-function flatten<T extends {}>(item: T) {
+export function flatten<T extends {}>(item: T) {
   return Object.values(flattenToMergedRecord(item)).join(",");
 }
 
-function csvLog<T extends {}>(data: T | T[]) {
+export function csvLog<T extends {}>(data: T | T[]) {
   const headers = getKeys(data instanceof Array ? data[0] : data);
   console.log(headers.join(","));
   if (Array.isArray(data)) {

@@ -21,6 +21,7 @@
     "vitest": "^3.2.3"
   },
   "dependencies": {
+    "backlog-js": "^0.13.4",
     "yargs": "^18.0.0"
   }
 }

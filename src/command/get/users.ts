@@ -2,6 +2,7 @@ import { CommandModule } from "yargs";
 import { withDebugOption, DebugOption } from "../../options/debug";
 import client from "../../client";
 import log from "../../utils/log";
+import { Entity } from "backlog-js";
 
 export const myselfCommand: CommandModule<{}, DebugOption> = {
   command: "myself",
@@ -10,6 +11,7 @@ export const myselfCommand: CommandModule<{}, DebugOption> = {
   builder: (yargs) => withDebugOption(yargs),
   handler: async (argv) => {
     const user = await client.getMyself();
-    log.csv(user);
+    log.debug(argv.debug, JSON.stringify(user, null, 2));
+    log.csv<Entity.User.User>(user);
   },
 };

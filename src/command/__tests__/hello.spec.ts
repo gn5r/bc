@@ -14,4 +14,18 @@ describe("hello command", () => {
 
     logSpy.mockRestore();
   });
+
+  it("prints debug message when debug is enabled", async () => {
+    const debugSpy = vi.spyOn(console, "debug").mockImplementation(() => {});
+
+    await helloCommand.handler({
+      _: [],
+      $0: "",
+      debug: true,
+    });
+
+    expect(debugSpy).toHaveBeenCalledWith("[debug]", "Debug mode is enabled");
+
+    debugSpy.mockRestore();
+  });
 });

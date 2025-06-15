@@ -2,6 +2,16 @@ import log, { flatten } from "../log";
 import { describe, it, vi, expect } from "vitest";
 
 describe("log.ts", () => {
+  it("should debug output when debug is true", () => {
+    const debugSpy = vi.spyOn(console, "debug").mockImplementation(() => {});
+
+    log.debug(true, "This is a debug message");
+
+    expect(debugSpy).toHaveBeenCalledWith("[debug]", "This is a debug message");
+
+    debugSpy.mockRestore();
+  });
+
   it("should flatten output correct string format", () => {
     const data = {
       id: 1,

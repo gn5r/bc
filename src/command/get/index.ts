@@ -3,7 +3,7 @@ import { myselfCommand } from "./users";
 
 export const getCommand: CommandModule<{}, {}> = {
   command: "get",
-  describe: "Get information from Backlog",
+  describe: "GETリクエストを実行します",
   builder: (yargs) =>
     yargs
       .wrap(null)

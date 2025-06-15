@@ -5,5 +5,8 @@ export default defineConfig({
     setupFiles: ["./vitest.setup.ts"],
     globals: true,
     include: ["**/__tests__/**/*.spec.ts"],
+    coverage: {
+      exclude: ["dist", "vitest.config.mts", "esbuild.mjs"],
+    },
   },
 });

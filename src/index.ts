@@ -2,19 +2,21 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { version } from "../package.json";
-import { helloCommand } from "./command/hello.js";
 import { getCommand } from "./command/get";
 
 export function createCli() {
   return yargs(hideBin(process.argv))
     .scriptName("backlog")
-    .usage("usage: $0 <command> [args]")
+    .usage("使い方: $0 <command> [args]")
     .version(version)
-    .command(helloCommand)
+    .describe("version", "バージョン情報を表示します")
     .command(getCommand)
-    .demandCommand(1, "You need at least one command before moving on")
+    .demandCommand(1, "コマンドを指定してください")
     .strict()
-    .showHelpOnFail(true);
+    .showHelpOnFail(true)
+    .help("help", "ヘルプを表示します")
+    .alias("h", "help")
+    .alias("v", "version");
 }
 
 if (require.main === module) {

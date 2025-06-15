@@ -8,5 +8,5 @@ export const withDebugOption = <T = {}>(yargs: Argv<T>) =>
   yargs.option("debug", {
     type: "boolean",
     default: false,
-    description: "Enable debug mode",
+    description: "デバッグモードを有効にします。",
   }) as Argv<T & DebugOption>;

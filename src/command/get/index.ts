@@ -1,5 +1,5 @@
 import { CommandModule } from "yargs";
-import { myselfCommand } from "./users";
+import { myselfCommand, usersCommand, getUserCommand } from "./users";
 
 export const getCommand: CommandModule<{}, {}> = {
   command: "get",
@@ -9,6 +9,8 @@ export const getCommand: CommandModule<{}, {}> = {
       .wrap(null)
       .usage("使い方: $0 get <subCommand>")
       .command(myselfCommand)
+      .command(usersCommand)
+      .command(getUserCommand)
       .demandCommand(1, "コマンドを指定してください")
       .strict()
       .showHelpOnFail(true),

@@ -22,12 +22,12 @@ export abstract class AbstractSubCommand<T = {}, U = {}>
   protected abstract execute(
     args: ArgumentsCamelCase<U & DebugOption>
   ): void | Promise<void>;
-  public handler(args: ArgumentsCamelCase<U & DebugOption>) {
+  public handler = (args: ArgumentsCamelCase<U & DebugOption>) => {
     try {
       this.execute(args);
     } catch (error) {
       console.error(error);
       process.exit(1);
     }
-  }
+  };
 }

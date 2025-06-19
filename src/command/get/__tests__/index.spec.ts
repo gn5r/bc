@@ -1,24 +1,34 @@
 import { describe, it, expect, vi } from "vitest";
 import yargs from "yargs";
-import { getCommand } from "../";
-import { myselfCommand } from "../users";
+import { createGetCommand } from "../";
+import { createGetUsersCommands } from "../users";
+import type { Backlog } from "backlog-js";
 
-describe("getCommand", () => {
+describe("createGetCommands", () => {
+  const mockClient = {} as unknown as Backlog;
+
   it("should have correct command and description", () => {
+    const getCommand = createGetCommand(mockClient);
+
     expect(getCommand.command).toBe("get");
     expect(getCommand.describe).toBe("GETリクエストを実行します");
   });
 
-  it("should register the myselfCommand subcommand", () => {
+  it("should register the user sub commands", () => {
     const cmd = yargs();
-
     const commandSpy = vi.spyOn(cmd, "command");
+    const getCommand = createGetCommand(mockClient);
 
     if (typeof getCommand.builder === "function") {
       getCommand.builder(cmd);
     }
 
-    expect(commandSpy).toHaveBeenCalledWith(myselfCommand);
+    const actualCommands = commandSpy.mock.calls[0][0];
+    expect(actualCommands.map((c) => c.command)).toEqual([
+      "myself",
+      "users",
+      "user",
+    ]);
   });
 
   it("should apply yargs options like demandCommand and strict", () => {
@@ -27,6 +37,7 @@ describe("getCommand", () => {
     const demandSpy = vi.spyOn(cmd, "demandCommand");
     const strictSpy = vi.spyOn(cmd, "strict");
     const showHelpSpy = vi.spyOn(cmd, "showHelpOnFail");
+    const getCommand = createGetCommand(mockClient);
 
     if (typeof getCommand.builder === "function") {
       getCommand.builder(cmd);

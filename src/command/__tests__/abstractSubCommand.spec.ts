@@ -1,7 +1,6 @@
 import { AbstractSubCommand } from "../abstractSubCommand";
 import { describe, it, expect, vi } from "vitest";
 import { ArgumentsCamelCase, Argv } from "yargs";
-import { DebugOption } from "../../options/debug";
 import { Backlog } from "backlog-js";
 
 class DummyCommand extends AbstractSubCommand {

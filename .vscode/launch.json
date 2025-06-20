@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    /*
+     * Each config in this array corresponds to an option
+     * in the debug drop-down
+     */
+    {
+      "name": "Attach to process",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "skipFiles": [
+        // Node.js internal core modules
+        "<node_internals>/**",
+
+        // Ignore all dependencies (optional)
+        "${workspaceFolder}/node_modules/**"
+      ]
+    }
+  ]
+}

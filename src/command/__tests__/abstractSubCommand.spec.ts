@@ -59,6 +59,45 @@ describe("AbstractSubCommand", () => {
     exitSpy.mockRestore();
   });
 
+  // TODO: Uncomment this test when BacklogError is properly defined
+  // it("should log BacklogError and exit", async () => {
+  //   const cmd = new DummyCommand(client);
+
+  //   const backlogError = new BacklogError.BacklogApiError(
+  //     {
+  //       status: 404,
+  //       statusText: "Not Found",
+  //       url: "https://example.com/api",
+  //       headers: new Headers({ "Content-Type": "application/json" }),
+  //       ok: false,
+  //     } as unknown as Response,
+  //     {
+  //       errors: [
+  //         { message: "User not found", code: 6, errorInfo: "", moreInfo: "" },
+  //       ],
+  //     }
+  //   );
+
+  //   vi.spyOn(cmd as any, "execute").mockImplementation(() => {
+  //     throw backlogError;
+  //   });
+
+  //   const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  //   const exitSpy = vi.spyOn(process, "exit").mockImplementation(() => {
+  //     throw new Error("exit called");
+  //   });
+
+  //   await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow(
+  //     "exit called"
+  //   );
+
+  //   expect(errorSpy).toHaveBeenCalledWith(backlogError.body);
+  //   expect(exitSpy).toHaveBeenCalledWith(1);
+
+  //   errorSpy.mockRestore();
+  //   exitSpy.mockRestore();
+  // });
+
   it("should log BacklogError.body.errors and exit", async () => {
     const cmd = new DummyCommand(client);
 

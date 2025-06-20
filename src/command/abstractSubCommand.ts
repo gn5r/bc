@@ -1,5 +1,6 @@
 import { ArgumentsCamelCase, CommandBuilder, CommandModule, Argv } from "yargs";
 import { withDebugOption, DebugOption } from "../options/debug";
+import { isBacklogError } from "../utils/backlog";
 import { Backlog } from "backlog-js";
 
 export abstract class AbstractSubCommand<T = {}, U = {}>
@@ -22,11 +23,15 @@ export abstract class AbstractSubCommand<T = {}, U = {}>
   protected abstract execute(
     args: ArgumentsCamelCase<U & DebugOption>
   ): void | Promise<void>;
-  public handler = (args: ArgumentsCamelCase<U & DebugOption>) => {
+  public handler = async (args: ArgumentsCamelCase<U & DebugOption>) => {
     try {
-      this.execute(args);
-    } catch (error) {
-      console.error(error);
+      await this.execute(args);
+    } catch (error: any) {
+      if (isBacklogError(error)) {
+        console.error(error._body);
+      } else {
+        console.error(error);
+      }
       process.exit(1);
     }
   };

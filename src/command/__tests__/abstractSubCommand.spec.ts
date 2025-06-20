@@ -36,16 +36,55 @@ describe("AbstractSubCommand", () => {
     expect(executeSpy).toHaveBeenCalledWith(args);
   });
 
-  it("should exit on error in handler", async () => {
+  it("should log generic error and exit", async () => {
     const cmd = new DummyCommand(client);
+
     vi.spyOn(cmd as any, "execute").mockImplementation(() => {
       throw new Error("fail");
     });
+
     const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const exitSpy = vi.spyOn(process, "exit").mockImplementation(() => {
       throw new Error("exit called");
     });
-    expect(() => cmd.handler({ debug: false } as any)).toThrow("exit called");
+
+    await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow(
+      "exit called"
+    );
+
+    expect(errorSpy).toHaveBeenCalledWith(expect.any(Error));
+    expect(exitSpy).toHaveBeenCalledWith(1);
+
+    errorSpy.mockRestore();
+    exitSpy.mockRestore();
+  });
+
+  it("should log BacklogError.body.errors and exit", async () => {
+    const cmd = new DummyCommand(client);
+
+    const backlogError = {
+      _name: "BacklogApiError",
+      _status: 404,
+      _url: "https://example.com/api",
+      _body: {
+        errors: [{ message: "User not found", code: 6, moreInfo: "" }],
+      },
+    };
+
+    vi.spyOn(cmd as any, "execute").mockImplementation(() => {
+      throw backlogError;
+    });
+
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const exitSpy = vi.spyOn(process, "exit").mockImplementation(() => {
+      throw new Error("exit called");
+    });
+
+    await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow(
+      "exit called"
+    );
+
+    expect(errorSpy).toHaveBeenCalledWith(backlogError._body);
     expect(exitSpy).toHaveBeenCalledWith(1);
 
     errorSpy.mockRestore();

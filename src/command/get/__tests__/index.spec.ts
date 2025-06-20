@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import yargs from "yargs";
 import { createGetCommand } from "../";
-import { createGetUsersCommands } from "../users";
 import type { Backlog } from "backlog-js";
 
 describe("createGetCommands", () => {

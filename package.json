@@ -10,6 +10,8 @@
   "scripts": {
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
+    "lint": "eslint **/*.{mjs,ts,mts}",
+    "format": "prettier -w **/*.{mjs,ts,mts}",
     "build": "node esbuild.mjs",
     "prepare": "husky"
   },

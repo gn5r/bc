@@ -4,7 +4,7 @@ export function createBacklogClient() {
   const host = process.env.BACKLOG_HOST;
   if (!host) {
     console.error(
-      "BACKLOG_HOST is set, but it should not be. Please check your environment variables."
+      "BACKLOG_HOST is set, but it should not be. Please check your environment variables.",
     );
     process.exit(1);
   }

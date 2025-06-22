@@ -27,6 +27,7 @@ describe("createGetCommands", () => {
       "myself",
       "users",
       "user",
+      "userIcon",
     ]);
   });
 

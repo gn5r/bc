@@ -10,7 +10,8 @@
   "scripts": {
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "build": "node esbuild.mjs"
+    "build": "node esbuild.mjs",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

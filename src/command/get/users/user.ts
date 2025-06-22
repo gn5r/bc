@@ -1,9 +1,10 @@
 import { AbstractSubCommand } from "../../abstractSubCommand";
 import { withUserIdOption, UserIdOption } from "../../../options/userId";
 import log from "../../../utils/log";
-import { Entity } from "backlog-js";
-import { Argv, ArgumentsCamelCase } from "yargs";
-import { DebugOption } from "../../../options/debug";
+
+import type { Entity } from "backlog-js";
+import type { Argv, ArgumentsCamelCase } from "yargs";
+import type { DebugOption } from "../../../options/debug";
 
 export class UserCommand extends AbstractSubCommand<{}, UserIdOption> {
   command = "user";

@@ -1,6 +1,7 @@
-import { CommandModule } from "yargs";
 import { createGetUsersCommands } from "./users/index";
 import { Backlog } from "backlog-js";
+
+import type { CommandModule } from "yargs";
 
 export function createGetCommand(client: Backlog) {
   return {

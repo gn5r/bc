@@ -1,7 +1,13 @@
-import { ArgumentsCamelCase, CommandBuilder, CommandModule, Argv } from "yargs";
 import { withDebugOption, DebugOption } from "../options/debug";
 import { isBacklogError } from "../utils/backlog";
 import { Backlog, Error } from "backlog-js";
+
+import type {
+  ArgumentsCamelCase,
+  CommandBuilder,
+  CommandModule,
+  Argv,
+} from "yargs";
 
 export abstract class AbstractSubCommand<T = {}, U = {}>
   implements CommandModule<T, U & DebugOption>

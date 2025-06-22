@@ -1,8 +1,9 @@
 import { AbstractSubCommand } from "../../abstractSubCommand";
 import log from "../../../utils/log";
-import { Entity } from "backlog-js";
-import { ArgumentsCamelCase } from "yargs";
-import { DebugOption } from "../../../options/debug";
+
+import type { Entity } from "backlog-js";
+import type { ArgumentsCamelCase } from "yargs";
+import type { DebugOption } from "../../../options/debug";
 
 export class MyselfCommand extends AbstractSubCommand {
   command = "myself";

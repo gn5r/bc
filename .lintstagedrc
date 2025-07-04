@@ -1,3 +1,4 @@
 {
-  "**/*.{js,mjs,ts,mts}": ["eslint", "prettier -w"]
+  "**/*.{js,mjs,ts,mts}": ["eslint", "prettier -w"],
+  "src/*.ts": ["vitest run --silent --changed"]
 }

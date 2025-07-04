@@ -7,7 +7,7 @@ import type { ArgumentsCamelCase, Argv } from "yargs";
 class DummyCommand extends AbstractSubCommand {
   command = "dummy";
   describe = "dummy command";
-  protected async execute(args: ArgumentsCamelCase<{ debug: boolean }>) {
+  protected async execute(_: ArgumentsCamelCase<{ debug: boolean }>) {
     // noop
   }
 }
@@ -19,12 +19,12 @@ describe("AbstractSubCommand", () => {
   it("should apply withDebugOption in builder", async () => {
     const mockArgv = {
       option: vi.fn().mockReturnThis(),
-    } as unknown as Argv<{}>;
+    } as unknown as Argv<object>;
     if (typeof command.builder === "function") {
       const result = await command.builder(mockArgv);
       expect(result.option).toHaveBeenCalledWith(
         "debug",
-        expect.objectContaining({ type: "boolean", default: false })
+        expect.objectContaining({ type: "boolean", default: false }),
       );
     }
   });
@@ -49,9 +49,7 @@ describe("AbstractSubCommand", () => {
       throw new Error("exit called");
     });
 
-    await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow(
-      "exit called"
-    );
+    await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow("exit called");
 
     expect(errorSpy).toHaveBeenCalledWith(expect.any(Error));
     expect(exitSpy).toHaveBeenCalledWith(1);
@@ -83,7 +81,7 @@ describe("AbstractSubCommand", () => {
   //     throw backlogError;
   //   });
 
-  //   const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  //   const errorSpy = vi.spyOn(console, "error").mockImplementation(() => object);
   //   const exitSpy = vi.spyOn(process, "exit").mockImplementation(() => {
   //     throw new Error("exit called");
   //   });
@@ -120,9 +118,7 @@ describe("AbstractSubCommand", () => {
       throw new Error("exit called");
     });
 
-    await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow(
-      "exit called"
-    );
+    await expect(() => cmd.handler({ debug: false } as any)).rejects.toThrow("exit called");
 
     expect(errorSpy).toHaveBeenCalledWith(backlogError._body);
     expect(exitSpy).toHaveBeenCalledWith(1);

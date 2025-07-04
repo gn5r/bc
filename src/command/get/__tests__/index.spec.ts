@@ -23,12 +23,7 @@ describe("createGetCommands", () => {
     }
 
     const actualCommands = commandSpy.mock.calls[0][0];
-    expect(actualCommands.map((c) => c.command)).toEqual([
-      "myself",
-      "users",
-      "user",
-      "userIcon",
-    ]);
+    expect(actualCommands.map((c) => c.command)).toEqual(["myself", "users", "user", "userIcon"]);
   });
 
   it("should apply yargs options like demandCommand and strict", () => {

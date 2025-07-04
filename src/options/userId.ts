@@ -4,9 +4,7 @@ export interface UserIdOption {
   userId?: number;
 }
 
-export const withUserIdOption = <T = {}>(
-  yargs: Argv<T>
-): Argv<T & UserIdOption> =>
+export const withUserIdOption = <T = unknown>(yargs: Argv<T>): Argv<T & UserIdOption> =>
   yargs
     .option("userId", {
       type: "number",

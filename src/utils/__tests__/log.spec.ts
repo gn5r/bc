@@ -58,14 +58,14 @@ describe("log.ts", () => {
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "id,userId,name,roleType,lang,nulabAccount,mailAddress,lastLoginTime"
-      )
+        "id,userId,name,roleType,lang,nulabAccount,mailAddress,lastLoginTime",
+      ),
     );
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        '1,admin,admin,1,ja,{"nulabId":"Prm9ZD9DQD5snNWcSYSwZiQoA9WFBUEa2ySznrSnSQRhdC2X8G","name":"admin","uniqueId":"admin"},eguchi@nulab.example,2022-09-01T06:35:39Z'
-      )
+        '1,admin,admin,1,ja,{"nulabId":"Prm9ZD9DQD5snNWcSYSwZiQoA9WFBUEa2ySznrSnSQRhdC2X8G","name":"admin","uniqueId":"admin"},eguchi@nulab.example,2022-09-01T06:35:39Z',
+      ),
     );
 
     logSpy.mockRestore();
@@ -93,14 +93,14 @@ describe("log.ts", () => {
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        "id,userId,name,roleType,lang,nulabAccount,mailAddress,lastLoginTime"
-      )
+        "id,userId,name,roleType,lang,nulabAccount,mailAddress,lastLoginTime",
+      ),
     );
 
     expect(logSpy).toHaveBeenCalledWith(
       expect.stringContaining(
-        '1,admin,admin,1,ja,{"nulabId":"Prm9ZD9DQD5snNWcSYSwZiQoA9WFBUEa2ySznrSnSQRhdC2X8G","name":"admin","uniqueId":"admin"},eguchi@nulab.example,2022-09-01T06:35:39Z'
-      )
+        '1,admin,admin,1,ja,{"nulabId":"Prm9ZD9DQD5snNWcSYSwZiQoA9WFBUEa2ySznrSnSQRhdC2X8G","name":"admin","uniqueId":"admin"},eguchi@nulab.example,2022-09-01T06:35:39Z',
+      ),
     );
 
     logSpy.mockRestore();

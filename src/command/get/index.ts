@@ -16,5 +16,5 @@ export function createGetCommand(client: Backlog) {
         .strict()
         .showHelpOnFail(true),
     handler: () => {},
-  } as CommandModule<{}, {}>;
+  } as CommandModule<unknown, unknown>;
 }

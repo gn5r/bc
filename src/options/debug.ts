@@ -4,9 +4,7 @@ export interface DebugOption {
   debug?: boolean;
 }
 
-export const withDebugOption = <T = {}>(
-  yargs: Argv<T>
-): Argv<T & DebugOption> =>
+export const withDebugOption = <T = unknown>(yargs: Argv<T>): Argv<T & DebugOption> =>
   yargs.option("debug", {
     type: "boolean",
     default: false,

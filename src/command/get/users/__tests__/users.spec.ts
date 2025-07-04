@@ -41,7 +41,7 @@ describe("UsersCommand", () => {
     const command = new UsersCommand(mockClient);
     expect(command.command).toBe("users");
     expect(command.describe).toContain(
-      "スペースのユーザーの一覧を取得します。\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/"
+      "スペースのユーザーの一覧を取得します。\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-user-list/",
     );
   });
 
@@ -54,10 +54,7 @@ describe("UsersCommand", () => {
     await command["execute"](args);
 
     expect(mockClient.getUsers).toHaveBeenCalled();
-    expect(logDebugSpy).toHaveBeenCalledWith(
-      true,
-      JSON.stringify(mockUser, null, 2)
-    );
+    expect(logDebugSpy).toHaveBeenCalledWith(true, JSON.stringify(mockUser, null, 2));
     expect(logCsvSpy).toHaveBeenCalledWith(mockUser);
   });
 });

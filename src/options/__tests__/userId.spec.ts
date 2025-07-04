@@ -17,44 +17,42 @@ describe("checkuserIdOption", () => {
   });
 
   it("throws an error if userId is undefined", () => {
-    expect(() => checkUserIdOption({})).toThrow(
-      "ユーザーIDを指定してください。"
-    );
+    expect(() => checkUserIdOption({})).toThrow("ユーザーIDを指定してください。");
   });
 
   it("throws an error if userId is zero", () => {
     expect(() => checkUserIdOption({ userId: 0 })).toThrow(
-      "ユーザーIDは正の整数でなければなりません。"
+      "ユーザーIDは正の整数でなければなりません。",
     );
   });
 
   it("throws an error if userId is negative", () => {
     expect(() => checkUserIdOption({ userId: -1 })).toThrow(
-      "ユーザーIDは正の整数でなければなりません。"
+      "ユーザーIDは正の整数でなければなりません。",
     );
   });
 
   it("throws an error if userId is not a number", () => {
-    expect(() =>
-      checkUserIdOption({ userId: "abc" as unknown as number })
-    ).toThrow("ユーザーIDは正の整数でなければなりません。");
+    expect(() => checkUserIdOption({ userId: "abc" as unknown as number })).toThrow(
+      "ユーザーIDは正の整数でなければなりません。",
+    );
   });
 
   it("throws an error if userId is NaN", () => {
     expect(() => checkUserIdOption({ userId: NaN })).toThrow(
-      "ユーザーIDは正の整数でなければなりません。"
+      "ユーザーIDは正の整数でなければなりません。",
     );
   });
 
   it("throws an error if userId is Infinity", () => {
     expect(() => checkUserIdOption({ userId: Infinity })).toThrow(
-      "ユーザーIDは正の整数でなければなりません。"
+      "ユーザーIDは正の整数でなければなりません。",
     );
   });
 
   it("throws an error if userId is a float", () => {
     expect(() => checkUserIdOption({ userId: 1.5 })).toThrow(
-      "ユーザーIDは正の整数でなければなりません。"
+      "ユーザーIDは正の整数でなければなりません。",
     );
   });
 });

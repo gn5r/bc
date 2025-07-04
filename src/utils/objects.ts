@@ -1,6 +1,4 @@
-export function flattenToMergedRecord(
-  data: Record<string, unknown>
-): Record<string, unknown> {
+export function flattenToMergedRecord(data: object): Record<string, unknown> {
   const result: Record<string, unknown> = {};
 
   for (const [key, value] of Object.entries(data)) {
@@ -14,6 +12,6 @@ export function flattenToMergedRecord(
   return result;
 }
 
-export function getKeys<T extends {}>(data: T) {
+export function getKeys<T extends object>(data: T) {
   return Object.keys(data);
 }

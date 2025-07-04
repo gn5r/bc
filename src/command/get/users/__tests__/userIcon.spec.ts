@@ -54,7 +54,7 @@ describe("UserIconCommand", () => {
     const command = new UserIconCommand(mockClient);
     expect(command.command).toBe("userIcon");
     expect(command.describe).toContain(
-      "ユーザーのアイコン画像を取得します。\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-user-icon/"
+      "ユーザーのアイコン画像を取得します。\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-user-icon/",
     );
   });
 
@@ -98,13 +98,8 @@ describe("UserIconCommand", () => {
     await command["execute"](args);
 
     expect(mockClient.getUserIcon).toHaveBeenCalledWith(1);
-    expect(logDebugSpy).toHaveBeenCalledWith(
-      true,
-      JSON.stringify(mockUserIcon, null, 2)
-    );
-    expect(fs.createWriteStream).toHaveBeenCalledWith(
-      expect.stringContaining(dummyFilename)
-    );
+    expect(logDebugSpy).toHaveBeenCalledWith(true, JSON.stringify(mockUserIcon, null, 2));
+    expect(fs.createWriteStream).toHaveBeenCalledWith(expect.stringContaining(dummyFilename));
     expect(pipelineMock).toHaveBeenCalledWith(dummyStream, mockWriteStream);
   });
 

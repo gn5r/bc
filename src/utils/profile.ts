@@ -29,7 +29,7 @@ export function isExistsConfigFile(dir = getBacklogConfigDir()) {
 export function createConfigFile(dir = getBacklogConfigDir()) {
   const configFile = getConfigFile(dir);
   if (!isExistsConfigFile(dir)) {
-    fs.writeFileSync(configFile, JSON.stringify({ default: null }, null, 2));
+    fs.writeFileSync(configFile, JSON.stringify({}, null, 2));
   }
   return configFile;
 }

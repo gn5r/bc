@@ -26,10 +26,7 @@ describe("profile.ts", () => {
     const writeFileSyncMock = vi.spyOn(fs, "writeFileSync").mockImplementation(() => {});
     const path = profileModule.createConfigFile(mockDir);
     expect(path).toBe(mockConfigPath);
-    expect(writeFileSyncMock).toHaveBeenCalledWith(
-      mockConfigPath,
-      JSON.stringify({ default: null }, null, 2),
-    );
+    expect(writeFileSyncMock).toHaveBeenCalledWith(mockConfigPath, JSON.stringify({}, null, 2));
   });
 
   it("creates profile correctly", () => {

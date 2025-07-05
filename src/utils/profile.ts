@@ -16,7 +16,7 @@ export function getConfigFile(dir = getBacklogConfigDir()) {
   return `${dir}/${BACKLOG_CONFIG_FILE_NAME}`;
 }
 
-export function readConfigFile(dir = getBacklogConfigDir()): Profiles {
+export function readProfiles(dir = getBacklogConfigDir()): Profiles {
   const configFile = getConfigFile(dir);
   return JSON.parse(fs.readFileSync(configFile, "utf-8"));
 }
@@ -36,18 +36,18 @@ export function createConfigFile(dir = getBacklogConfigDir()) {
 
 export function createProfile(name: string, profile: Profile, dir = getBacklogConfigDir()) {
   const configFile = getConfigFile(dir);
-  const profiles: Profiles = isExistsConfigFile(dir) ? readConfigFile(dir) : { default: null };
+  const profiles: Profiles = isExistsConfigFile(dir) ? readProfiles(dir) : { default: null };
   profiles[name] = profile;
   fs.writeFileSync(configFile, JSON.stringify(profiles, null, 2));
   return profiles[name];
 }
 
 export function getProfile(name: string, dir = getBacklogConfigDir()): Profile | null {
-  const profiles = readConfigFile(dir);
+  const profiles = readProfiles(dir);
   return profiles[name] || null;
 }
 
 export function getDefaultProfile(dir = getBacklogConfigDir()): Profile | null {
-  const profiles = readConfigFile(dir);
+  const profiles = readProfiles(dir);
   return profiles.default || null;
 }

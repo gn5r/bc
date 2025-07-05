@@ -1,7 +1,7 @@
 import { flattenToMergedRecord, getKeys } from "../objects";
 import { describe, it, expect } from "vitest";
 
-describe("flatten.ts", () => {
+describe("objects.ts", () => {
   it("should flatten nested objects into a single record", () => {
     const data = {
       id: 1,

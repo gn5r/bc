@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "backlog-js": "^0.13.5",
+    "inquirer": "^12.7.0",
     "yargs": "^18.0.0"
   }
 }

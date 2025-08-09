@@ -1,19 +1,44 @@
 import { Backlog } from "backlog-js";
+import { isExistsConfigFile, getProfile } from "./utils/profile";
 
-export function createBacklogClient() {
+export function createBacklogClient(profileName = "default") {
   const host = process.env.BACKLOG_HOST;
-  if (!host) {
-    console.error(
-      "BACKLOG_HOST is set, but it should not be. Please check your environment variables.",
-    );
+  const apiKey = process.env.BACKLOG_API_KEY;
+  const accessToken = process.env.BACKLOG_ACCESS_TOKEN;
+
+  if (host && (apiKey || accessToken)) {
+    if (apiKey) {
+      return new Backlog({
+        host,
+        apiKey,
+      });
+    } else if (accessToken) {
+      return new Backlog({
+        host,
+        accessToken,
+      });
+    }
+  }
+
+  if (!isExistsConfigFile()) {
+    console.error("Backlogの認証情報が設定されていません");
     process.exit(1);
   }
 
-  return new Backlog({
-    host: host,
-    apiKey: process.env.BACKLOG_API_KEY,
-    accessToken: process.env.BACKLOG_ACCESS_TOKEN,
-  });
-}
+  const profile = getProfile(profileName);
+  if (!profile) {
+    console.error(`"${profileName}"プロファイルが見つかりません`);
+    process.exit(1);
+  }
 
-export default createBacklogClient();
+  if (profile.apiKey || profile.accessToken) {
+    return new Backlog({
+      host: profile.host,
+      apiKey: profile.apiKey ?? undefined,
+      accessToken: profile.accessToken ?? undefined,
+    });
+  }
+
+  console.error("Backlogクライアントの生成に失敗しました");
+  process.exit(1);
+}

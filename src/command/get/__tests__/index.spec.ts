@@ -1,13 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
 import yargs from "yargs";
 import { createGetCommand } from "../";
-import type { Backlog } from "backlog-js";
 
 describe("createGetCommands", () => {
-  const mockClient = {} as unknown as Backlog;
-
   it("should have correct command and description", () => {
-    const getCommand = createGetCommand(mockClient);
+    const getCommand = createGetCommand();
 
     expect(getCommand.command).toBe("get");
     expect(getCommand.describe).toBe("GETリクエストを実行します");
@@ -16,7 +13,7 @@ describe("createGetCommands", () => {
   it("should register the user sub commands", () => {
     const cmd = yargs();
     const commandSpy = vi.spyOn(cmd, "command");
-    const getCommand = createGetCommand(mockClient);
+    const getCommand = createGetCommand();
 
     if (typeof getCommand.builder === "function") {
       getCommand.builder(cmd);
@@ -32,7 +29,7 @@ describe("createGetCommands", () => {
     const demandSpy = vi.spyOn(cmd, "demandCommand");
     const strictSpy = vi.spyOn(cmd, "strict");
     const showHelpSpy = vi.spyOn(cmd, "showHelpOnFail");
-    const getCommand = createGetCommand(mockClient);
+    const getCommand = createGetCommand();
 
     if (typeof getCommand.builder === "function") {
       getCommand.builder(cmd);

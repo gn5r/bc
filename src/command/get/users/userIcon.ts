@@ -10,6 +10,7 @@ import { promisify } from "util";
 import type { Entity } from "backlog-js";
 import type { Argv, ArgumentsCamelCase } from "yargs";
 import type { DebugOption } from "../../../options/debug";
+import type { ProfileOption } from "../../../options/profile";
 
 export class UserIconCommand extends AbstractSubCommand<unknown, UserIdOption & OutputOption> {
   command = "userIcon";
@@ -17,7 +18,7 @@ export class UserIconCommand extends AbstractSubCommand<unknown, UserIdOption & 
     "ユーザーのアイコン画像を取得します。\nhttps://developer.nulab.com/ja/docs/backlog/api/2/get-user-icon/";
   protected build = (argv: Argv<unknown>) => withUserIdOption(withOutputOption(argv));
   protected async execute(
-    args: ArgumentsCamelCase<UserIdOption & DebugOption & OutputOption>,
+    args: ArgumentsCamelCase<UserIdOption & OutputOption & DebugOption & ProfileOption>,
   ): Promise<void> {
     const userIcon: Entity.File.FileData = await this.client.getUserIcon(args.userId!);
     log.debug(args.debug, JSON.stringify(userIcon, null, 2));

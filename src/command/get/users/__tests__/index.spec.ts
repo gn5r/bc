@@ -7,8 +7,7 @@ import { UserIconCommand } from "../userIcon";
 
 describe("createGetUsersCommands", () => {
   it("should return instances of expected command classes", () => {
-    const mockClient = {} as any;
-    const result = createGetUsersCommands(mockClient);
+    const result = createGetUsersCommands();
 
     expect(result).toHaveLength(4);
     expect(result[0]).toBeInstanceOf(MyselfCommand);

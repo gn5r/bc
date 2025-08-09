@@ -1,9 +1,8 @@
 import { createGetUsersCommands } from "./users/index";
-import { Backlog } from "backlog-js";
 
 import type { CommandModule } from "yargs";
 
-export function createGetCommand(client: Backlog) {
+export function createGetCommand() {
   return {
     command: "get",
     describe: "GETリクエストを実行します",
@@ -11,7 +10,7 @@ export function createGetCommand(client: Backlog) {
       yargs
         .wrap(null)
         .usage("使い方: $0 get <subCommand>")
-        .command(createGetUsersCommands(client))
+        .command(createGetUsersCommands())
         .demandCommand(1, "コマンドを指定してください")
         .strict()
         .showHelpOnFail(true),

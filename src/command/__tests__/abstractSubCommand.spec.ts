@@ -1,6 +1,5 @@
 import { AbstractSubCommand } from "../abstractSubCommand";
 import { describe, it, expect, vi } from "vitest";
-import { Backlog } from "backlog-js";
 
 import type { ArgumentsCamelCase, Argv } from "yargs";
 
@@ -13,8 +12,7 @@ class DummyCommand extends AbstractSubCommand {
 }
 
 describe("AbstractSubCommand", () => {
-  const client = {} as Backlog;
-  const command = new DummyCommand(client);
+  const command = new DummyCommand();
 
   it("should apply withDebugOption in builder", async () => {
     const mockArgv = {
@@ -30,7 +28,7 @@ describe("AbstractSubCommand", () => {
   });
 
   it("should call execute in handler", async () => {
-    const cmd = new DummyCommand(client);
+    const cmd = new DummyCommand();
     const executeSpy = vi.spyOn(cmd as any, "execute");
     const args = { _: [], $0: "", debug: false };
     await cmd.handler(args);
@@ -38,7 +36,7 @@ describe("AbstractSubCommand", () => {
   });
 
   it("should log generic error and exit", async () => {
-    const cmd = new DummyCommand(client);
+    const cmd = new DummyCommand();
 
     vi.spyOn(cmd as any, "execute").mockImplementation(() => {
       throw new Error("fail");
@@ -98,7 +96,7 @@ describe("AbstractSubCommand", () => {
   // });
 
   it("should log BacklogError.body.errors and exit", async () => {
-    const cmd = new DummyCommand(client);
+    const cmd = new DummyCommand();
 
     const backlogError = {
       _name: "BacklogApiError",

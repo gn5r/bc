@@ -2,7 +2,6 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { version } from "../package.json";
-import client from "./client";
 import { createGetCommand } from "./command/get";
 import { createConfigureCommand } from "./command/configure";
 
@@ -13,7 +12,7 @@ export function createCli() {
     .version(version)
     .describe("version", "バージョン情報を表示します")
     .command(createConfigureCommand())
-    .command(createGetCommand(client))
+    .command(createGetCommand())
     .demandCommand(1, "コマンドを指定してください")
     .strict()
     .showHelpOnFail(true)
